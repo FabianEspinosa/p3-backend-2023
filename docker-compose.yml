@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  forumdb:
+    image: postgres
+    container_name: tournamentdb
+    restart: always
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=pikachu
+      - POSTGRES_DB=pkmntournamentdb
+    ports:
+      - 5432:5432
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+
+volumes:
+  dbdata:
