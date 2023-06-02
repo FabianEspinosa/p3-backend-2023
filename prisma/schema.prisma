@@ -11,36 +11,35 @@ datasource db {
 }
 
 model Trainer {
-  id        Int      @id @default(autoincrement())
-  name      String
-  hometown  String?
-  teams     Team[]
-  pokemons  Pokemon[]
+  id       Int       @id @default(autoincrement())
+  name     String
+  hometown String?
+  teams    Team[]
+  pokemons Pokemon[]
 }
 
 model Pokemon {
-  id          Int      @id @default(autoincrement())
-  name        String
-  level       Int
-  trainer     Trainer  @relation(fields: [trainerId], references: [id])
-  trainerId   Int
-  moves       Move[]
-  teams       Team[]   @relation("TeamToPokemon")
+  id        Int     @id @default(autoincrement())
+  name      String
+  level     Int
+  trainer   Trainer @relation(fields: [trainerId], references: [id])
+  trainerId Int
+  moves     Move[]
+  teams     Team[]  @relation("TeamToPokemon")
 }
 
 model Team {
-  id          Int        @id @default(autoincrement())
-  name        String
-  trainer     Trainer    @relation(fields: [trainerId], references: [id])
-  trainerId   Int
-  pokemons    Pokemon[]  @relation("TeamToPokemon")
+  id        Int       @id @default(autoincrement())
+  name      String
+  trainer   Trainer   @relation(fields: [trainerId], references: [id])
+  trainerId Int
+  pokemons  Pokemon[] @relation("TeamToPokemon")
 }
 
 model Move {
-  id          Int      @id @default(autoincrement())
-  name        String
-  power       Int
-  pokemon     Pokemon? @relation(fields: [pokemonId], references: [id])
-  pokemonId   Int?
+  id        Int      @id @default(autoincrement())
+  name      String
+  power     Int
+  pokemon   Pokemon? @relation(fields: [pokemonId], references: [id])
+  pokemonId Int?
 }
-
